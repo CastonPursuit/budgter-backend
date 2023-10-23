@@ -52,13 +52,13 @@ describe('PUT /transactions/:id', () => {
         const transactionId = transactionsArray[0].id;
         const updatedTransaction = {
             ...transactionsArray[0],
-            transaction_name: "updated transaction"
+            item_name: "updated transaction"
         };
 
         const response = await request(app).put(`/transactions/${transactionId}`).send(updatedTransaction);
 
         expect(response.status).toBe(200);
-        expect(response.body.transaction_name).toEqual("updated transaction");
+        expect(response.body.item_name).toEqual("updated transaction");
     });
 });
 
