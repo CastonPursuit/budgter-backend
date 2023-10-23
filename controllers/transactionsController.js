@@ -96,5 +96,23 @@ transactionRouter.put('/:id', (req,res,next) => {
 });
 
 
+// DELETE an item by ID
+transactionRouter.delete('/:id', (req, res, next) => {
+    try {
+        const id = parseInt(req.params.id);
+        const itemIndex = transactionArray.findIndex(item => item.id === id);
+
+        if (itemIndex === -1) {
+            return res.status(404).send({ message: 'Item not found' });
+        }
+
+        const deletedItem = transactionArray.splice(itemIndex, 1); 
+
+        res.send(deletedItem[0]);
+    } catch (error) {
+        next(error);
+    }
+});
+
 
 module.exports = transactionRouter
